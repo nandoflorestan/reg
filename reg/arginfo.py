@@ -33,10 +33,10 @@ def arginfo(callable):
     func, cache_key, remove_self = get_callable_info(callable)
     if func is None:
         return None
-    result = inspect.getargspec(func)
+    result = inspect.getfullargspec(func)
     if remove_self:
         args = result.args[1:]
-        result = inspect.ArgSpec(args, result.varargs, result.keywords,
+        result = inspect.ArgSpec(args, result.varargs, result.varkw,
                                  result.defaults)
     arginfo._cache[cache_key] = result
     return result
